@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Garfield-Achi</h1>
+
+    <div class="row">
+        <h2>Happiness @ViewBag.Happiness </h2>
+        <h2> Fullness @ViewBag.Fullness </h2>
+        <h2> Energy @ViewBag.Energy </h2>
+        <h2> Meals @ViewBag.Meals </h2>
+    </div>
+    <div class="middle">
+        <!-- <img src="~/Images/chill.gif" alt=""> -->
+
+        
+
+        @{    
+            if(@ViewBag.Happiness < 1 || @ViewBag.Fullness < 1)
+                {
+                    <img src="~/Images/dead.gif" alt="">;
+                }  
+            else if(@ViewBag.Happiness > 99 && @ViewBag.Fullness > 99)
+                {
+                    <img src="~/Images/win.gif" alt="">;
+                }
+            else if(@ViewBag.PictureID == 1)
+                {
+                    <img src="~/Images/eating.gif" alt="">;
+                }
+            else if(@ViewBag.PictureID == 2)
+                {
+                    <img src="~/Images/playing.gif" alt="">;
+                }
+            else if(@ViewBag.PictureID == 3)
+                {
+                    <img src="~/Images/working.gif" alt="">;
+                }
+            else if(@ViewBag.PictureID == 4)
+                {
+                    <img src="~/Images/sleeping.gif" alt="">;
+                }
+            else if(@ViewBag.PictureID == 5)
+                {
+                    <img src="~/Images/nofood.gif" alt="">;
+                }
+            else
+                {
+                    <img src="~/Images/chill.gif" alt="">;
+                }
+        }
+    </div>
+<!-- in your View -->
+    @* <h2>You have clicked the button @ViewBag.Count</h2>
+     <h3>@ViewBag.Passcode</h3>
+    <br>
+    <form asp-action="Generate" asp-controller="Home" method="POST">
+            <input type="submit" value="Generate" class="btn btn-warning">
+        </form> *@
+
+    <div class="row_2">
+
+    @if(@ViewBag.Happiness > 0 || @ViewBag.Fullness > 0)
+    {
+
+        <form asp-action="Play" asp-controller="Home" method="POST">
+            <input type="submit" value="Play" class="btn btn-warning">
+        </form>
+
+        <form asp-action="Feed" asp-controller="Home" method="POST">
+            <input type="submit" value="Feed" class="btn btn-success">
+        </form>
+
+        
+        <form asp-action="Sleep" asp-controller="Home" method="POST">
+            <input type="submit" value="Sleep" class="btn btn-secondary">
+        </form>
+
+        <form asp-action="Work" asp-controller="Home" method="POST">
+            <input type="submit" value="Work" class="btn btn-primary">
+        </form>
+    }
+
+    </div>
+    <br>
+    <div class="reset">
+
+    @if(@ViewBag.Happiness < 1 || @ViewBag.Fullness < 1)
+    {
+        <h3>You have died, would you like to try again?</h3>;
+
+        <form asp-action="Reset" asp-controller="Home" method="POST">
+            <input type="submit" value="Try Again?" class="btn btn-danger">
+        </form>
+    }
+
+    @if(@ViewBag.Happiness > 99 && @ViewBag.Fullness > 99)
+    {
+        <h3>You have Won, would you like to play again?</h3>;
+        <form asp-action="Reset" asp-controller="Home" method="POST">
+            <input type="submit" value="Try Again?" class="btn btn-danger">
+        </form>
+    }
+    </div>
+</div>
